@@ -1,4 +1,3 @@
-console.log("real");
 gsap.registerPlugin(SplitText);
 
 function initLandingAnimation() {
@@ -88,3 +87,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initLandingAnimation();
   });
 });
+
