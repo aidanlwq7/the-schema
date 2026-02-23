@@ -20,7 +20,6 @@ function initAboutPathsAnim() {
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      markers: true,
       trigger: container,
       start: "top 80%",
       end: "bottom 80%",
@@ -39,3 +38,4 @@ function initAboutPathsAnim() {
 document.addEventListener("DOMContentLoaded", () => {
   initAboutPathsAnim();
 });
+
