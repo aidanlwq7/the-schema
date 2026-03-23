@@ -6,6 +6,7 @@ function initColorCardsAnimForLarger() {
   const stage = document.querySelector(".colors_container-cards");
   const cards = gsap.utils.toArray(".color_card", stage);
   const N = cards.length;
+  const rotations = [10, -12, 5, -8, 2, 15];
 
   const CARD_W = cards[0].offsetWidth;
   const CARD_H = cards[0].offsetHeight;
@@ -22,7 +23,7 @@ function initColorCardsAnimForLarger() {
     el,
     x: startX + i * (CARD_W - OVERLAP),
     y: centreY + (Math.random() - 0.5) * 30,
-    rot: (Math.random() - 0.5) * 22,
+    rot: rotations[i],
     zi: zIndexes[i],
   }));
 
