@@ -18,7 +18,7 @@ function initLandingAnimation() {
 
   const tagline = document.querySelector(".hero_tagline");
 
-  const split = SplitText.create(tagline, {
+  const tagSplit = SplitText.create(tagline, {
     type: "lines",
     autoSplit: true,
     mask: "lines",
@@ -28,6 +28,22 @@ function initLandingAnimation() {
         ease: "power3.inOut",
         duration: 0.9,
         stagger: 0.1,
+        onComplete: () => self.revert(),
+      });
+    },
+  });
+
+  const scrollNote = document.querySelector(".hero-scroll-note");
+
+  const noteSplit = SplitText.create(scrollNote, {
+    type: "lines",
+    autoSplit: true,
+    mask: "lines",
+    onSplit: (self) => {
+      return gsap.from(self.lines, {
+        yPercent: 120,
+        ease: "power3.inOut",
+        duration: 0.9,
         onComplete: () => self.revert(),
       });
     },
@@ -46,7 +62,7 @@ function initLandingAnimation() {
     scale: 0.7,
   });
 
-  gsap.set(split.lines, { yPercent: 120 });
+  gsap.set([tagSplit.lines, noteSplit.lines], { yPercent: 120 });
 
   const tl = gsap.timeline({
     delay: 0.5,
@@ -73,12 +89,18 @@ function initLandingAnimation() {
       },
       "<=0.15",
     )
-    .to(split.lines, {
+    .to(tagSplit.lines, {
       yPercent: 0,
       ease: "power3.inOut",
       duration: 0.5,
       stagger: 0.1,
-      onComplete: () => split.revert(),
+      onComplete: () => tagSplit.revert(),
+    })
+    .to(noteSplit.lines, {
+      yPercent: 0,
+      ease: "power3.inOut",
+      duration: 0.5,
+      onComplete: () => noteSplit.revert(),
     });
 }
 
@@ -87,4 +109,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initLandingAnimation();
   });
 });
-
