@@ -12,7 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     } else if (window.matchMedia("(min-width: 768px)").matches) {
       card.addEventListener("click", () => {
-        card.classList.toggle("is-revealed");
+        cards.forEach((otherCard) => {
+          if (otherCard !== card) {
+            otherCard.classList.remove("is-revealed");
+          }
+        });
+
+        card.classList.add("is-revealed");
       });
     }
   });
